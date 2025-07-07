@@ -1,7 +1,7 @@
 from playwright.sync_api import sync_playwright, expect
 
 with sync_playwright() as playwright:
-    browser = playwright.webkit.launch(headless=False)
+    browser = playwright.firefox.launch(headless=False)
     context = browser.new_context()
     page = context.new_page()
 
@@ -25,4 +25,31 @@ with sync_playwright() as playwright:
     expect(registration_button).not_to_be_disabled()
     registration_button.click()
 
-    print(context.storage_state)
+    context.storage_state(path="browser-state.json")
+
+with sync_playwright() as playwright:
+    browser = playwright.firefox.launch(headless=False)
+    context = browser.new_context(storage_state='browser-state.json')
+    page = context.new_page()
+
+    page.goto("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses")
+
+    courses_title_toolbar = page.get_by_test_id("courses-list-toolbar-title-text")
+    expect(courses_title_toolbar).to_contain_text("Courses")
+
+    coureses_icon = page.get_by_test_id("courses-list-empty-view-icon")
+    expect(coureses_icon).to_be_visible()
+
+    courses_title = page.get_by_test_id("courses-list-empty-view-title-text")
+    expect(courses_title).to_have_text("There is no results")
+
+    courses_discription = page.get_by_test_id("courses-list-empty-view-description-text")
+    expect(courses_discription).to_have_text("Results from the load test pipeline will be displayed here")
+
+
+
+
+
+
+
+
