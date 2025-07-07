@@ -24,5 +24,3 @@ with sync_playwright() as playwright:
 
     expect(registration_button).not_to_be_disabled()
     registration_button.click()
-
-    print(context.storage_state)
