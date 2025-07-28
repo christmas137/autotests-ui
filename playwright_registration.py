@@ -23,7 +23,6 @@ with sync_playwright() as playwright:
 
    h6_dashboard_title = page.get_by_test_id("dashboard-toolbar-title-text")
    expect(h6_dashboard_title).to_contain_text("Dashboard")
-   
 
 
 
