@@ -5,20 +5,28 @@ with sync_playwright() as playwright:
     context = browser.new_context()
     page = context.new_page()
 
-    page.goto("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration")
+    page.goto(
+        "https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration"
+    )
 
     registration_button = page.get_by_test_id("registration-page-registration-button")
     expect(registration_button).to_be_disabled()
 
-    registration_email_input = page.get_by_test_id('registration-form-email-input').locator('input')
+    registration_email_input = page.get_by_test_id(
+        "registration-form-email-input"
+    ).locator("input")
     expect(registration_email_input).to_be_visible()
     registration_email_input.fill("user.name@gmail.com")
 
-    registration_username_input = page.get_by_test_id('registration-form-username-input').locator('input')
+    registration_username_input = page.get_by_test_id(
+        "registration-form-username-input"
+    ).locator("input")
     expect(registration_username_input).to_be_visible()
     registration_username_input.fill("username")
 
-    registration_password_input = page.get_by_test_id('registration-form-password-input').locator('input')
+    registration_password_input = page.get_by_test_id(
+        "registration-form-password-input"
+    ).locator("input")
     expect(registration_password_input).to_be_visible()
     registration_password_input.fill("password")
 
@@ -29,10 +37,12 @@ with sync_playwright() as playwright:
 
 with sync_playwright() as playwright:
     browser = playwright.firefox.launch(headless=False)
-    context = browser.new_context(storage_state='browser-state.json')
+    context = browser.new_context(storage_state="browser-state.json")
     page = context.new_page()
 
-    page.goto("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses")
+    page.goto(
+        "https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses"
+    )
 
     courses_title_toolbar = page.get_by_test_id("courses-list-toolbar-title-text")
     expect(courses_title_toolbar).to_contain_text("Courses")
@@ -43,13 +53,9 @@ with sync_playwright() as playwright:
     courses_title = page.get_by_test_id("courses-list-empty-view-title-text")
     expect(courses_title).to_have_text("There is no results")
 
-    courses_discription = page.get_by_test_id("courses-list-empty-view-description-text")
-    expect(courses_discription).to_have_text("Results from the load test pipeline will be displayed here")
-
-
-
-
-
-
-
-
+    courses_discription = page.get_by_test_id(
+        "courses-list-empty-view-description-text"
+    )
+    expect(courses_discription).to_have_text(
+        "Results from the load test pipeline will be displayed here"
+    )
