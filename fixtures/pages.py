@@ -18,8 +18,8 @@ def registration_page(chromium_page: Page) -> RegistrationPage:
 
 
 @pytest.fixture
-def dashboard_page(chromium_page: Page) -> DashboardPage:
-    return DashboardPage(page=chromium_page)
+def dashboard_page_with_state(chromium_page_with_state: Page) -> DashboardPage:
+    return DashboardPage(page=chromium_page_with_state)
 
 @pytest.fixture
 def courses_list_page(chromium_page_with_state: Page) -> CoursesListPage:
@@ -27,5 +27,4 @@ def courses_list_page(chromium_page_with_state: Page) -> CoursesListPage:
 
 @pytest.fixture
 def create_course_page(chromium_page_with_state: Page) -> CreateCoursePage:
-    chromium_page_with_state.goto("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create")
     return CreateCoursePage(page=chromium_page_with_state)
