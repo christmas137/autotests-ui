@@ -2,7 +2,8 @@ from typing import Pattern
 
 from playwright.sync_api import Page, expect
 
-class BaseComponent: 
+
+class BaseComponent:
     def __init__(self, page: Page):
         self.page = page
 

@@ -29,6 +29,7 @@ def initialize_browser_state(playwright: Playwright) -> Page:
     registration_email_input.fill("user.name@gmail.com")
 
     registration_username_input = page.get_by_test_id(
+        "registration-form-username-input"
     ).locator("input")
     expect(registration_username_input).to_be_visible()
     registration_username_input.fill("username")
