@@ -33,12 +33,10 @@ class ImageUploadWidgetComponent(BaseComponent):
         expect(self.upload_button).to_be_visible()
 
         if is_image_uploaded:
-            # Если картинка загружена, проверяем состояние специфичное для загруженной картинки
             expect(self.remove_button).to_be_visible()
             expect(self.preview_image).to_be_visible()
 
         if not is_image_uploaded:
-            # Если картинка не загружена, проверяем наличие компонента EmptyViewComponent
             self.preview_empty_view.check_visible(
                 title='No image selected',
                 description='Preview of selected image will be displayed here'
