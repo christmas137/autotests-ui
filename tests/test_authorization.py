@@ -7,7 +7,8 @@ login = {
     "  ": "password",
 }
 
-
+@pytest.mark.authorization
+@pytest.mark.regression
 @pytest.mark.parametrize("email, password", login.items())
 def test_wrong_email_or_password_authorization(
     login_page: LoginPage, email: str, password: str

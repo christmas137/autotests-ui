@@ -1,6 +1,7 @@
 from playwright.sync_api import Page, expect
 
 from pages.base_page import BasePage
+from components.navigation.navbar_component import NavbarComponent
 from components.views.empty_view_component import EmptyViewComponent
 from components.views.image_upload_widget_component import ImageUploadWidgetComponent
 from components.courses.create_course_exercise_form_component import CreateCourseExerciseFormComponent
@@ -13,6 +14,7 @@ class CreateCoursePage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
 
+        self.navbar = NavbarComponent(page)
         self.preview_empty_view = EmptyViewComponent(page, "create-course-preview")
         self.exercises_empty_view = EmptyViewComponent(page, "create-course-exercises")
         self.image_upload_widget = ImageUploadWidgetComponent(page, "create-course-preview")
