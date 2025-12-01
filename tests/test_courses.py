@@ -19,7 +19,9 @@ def test_create_course(
     )
     create_course_page.create_course_exercise_toolbar_view.check_visible()
     create_course_page.check_visible_exercises_empty_view()
-    create_course_page.image_upload_widget.upload_preview_image("./testdata/files/image.png")
+    create_course_page.image_upload_widget.upload_preview_image(
+        "./testdata/files/image.png"
+    )
     create_course_page.image_upload_widget.check_visible(is_image_uploaded=True)
     create_course_page.create_course_form.fill(
         title="Playwright",
@@ -32,7 +34,7 @@ def test_create_course(
     courses_list_page.toolbar_view.check_visible()
     courses_list_page.course_view.check_visible(
         index=0,
-        title='Playwright',
+        title="Playwright",
         max_score="100",
         min_score="10",
         estimated_time="2 weeks",

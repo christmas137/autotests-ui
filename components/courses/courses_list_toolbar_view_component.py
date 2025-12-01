@@ -13,10 +13,10 @@ class CoursesListToolbarViewComponent(BaseComponent):
         self.create_course_button = page.get_by_test_id(
             "courses-list-toolbar-create-course-button"
         )
-    
+
     def check_visible(self):
         expect(self.title).to_be_visible()
-        expect(self.title).to_have_text('Courses')
+        expect(self.title).to_have_text("Courses")
 
         expect(self.create_course_button).to_be_visible()
 

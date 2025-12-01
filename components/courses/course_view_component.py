@@ -10,13 +10,22 @@ class CourseViewComponent(BaseComponent):
 
         self.menu = CourseViewMenuComponent(page)
 
-        self.title = page.get_by_test_id('course-widget-title-text')
-        self.image = page.get_by_test_id('course-preview-image')
-        self.max_score_text = page.get_by_test_id('course-max-score-info-row-view-text')
-        self.min_score_text = page.get_by_test_id('course-min-score-info-row-view-text')
-        self.estimated_time_text = page.get_by_test_id('course-estimated-time-info-row-view-text')
-    
-    def check_visible(self, index: int, title: str, max_score: str, min_score: str, estimated_time: str):
+        self.title = page.get_by_test_id("course-widget-title-text")
+        self.image = page.get_by_test_id("course-preview-image")
+        self.max_score_text = page.get_by_test_id("course-max-score-info-row-view-text")
+        self.min_score_text = page.get_by_test_id("course-min-score-info-row-view-text")
+        self.estimated_time_text = page.get_by_test_id(
+            "course-estimated-time-info-row-view-text"
+        )
+
+    def check_visible(
+        self,
+        index: int,
+        title: str,
+        max_score: str,
+        min_score: str,
+        estimated_time: str,
+    ):
         expect(self.image.nth(index)).to_be_visible()
 
         expect(self.title.nth(index)).to_be_visible()
