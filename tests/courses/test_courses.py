@@ -1,7 +1,7 @@
 import pytest
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 from fixtures.pages import CreateCoursePage, CoursesListPage
-from pages.courses_list_page import CoursesListPage
+from pages.courses.courses_list_page import CoursesListPage
 
 
 @pytest.mark.courses

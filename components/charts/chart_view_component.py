@@ -8,9 +8,6 @@ class ChartViewComponent(BaseComponent):
     def __init__(self, page: Page, identifier: str, char_type: str):
         super().__init__(page)
 
-        #self.title = page.get_by_test_id(f"{identifier}-widget-title-text")
-        #self.chart = page.get_by_test_id(f"{identifier}-{char_type}-chart")
-
         self.title = Text(page, f"{identifier}-widget-title-text", 'Chart Title')
         self.chart = Image(page, f"{identifier}-{char_type}-chart", 'Chart')
 
