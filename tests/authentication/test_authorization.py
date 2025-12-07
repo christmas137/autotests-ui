@@ -1,5 +1,5 @@
 import pytest
-from pages.login_page import LoginPage
+from pages.authentication.login_page import LoginPage
 
 login = {
     "user.name1@gmail.com": "password",
