@@ -12,9 +12,10 @@ class DashboardPage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
 
+        self.sidebar = SidebarComponent(page)
         self.navbar = NavbarComponent(page)
         self.sidebar = SidebarComponent(page)
-        self.dashboard_title = DashboardToolbarViewComponent(page)
+        self.dashboard_toolbar_view = DashboardToolbarViewComponent(page)
 
         self.students_chart_view = ChartViewComponent(
             page, identifier="students", char_type="bar"

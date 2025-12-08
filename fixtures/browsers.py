@@ -10,7 +10,7 @@ def chromium_page(playwright: Playwright) -> Generator[Page, None, None]:
     browser.close()
 
 
-pytest.fixture(scope="session")
+@pytest.fixture(scope="session")
 def initialize_browser_state(playwright: Playwright):
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
