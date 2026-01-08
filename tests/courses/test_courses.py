@@ -1,16 +1,27 @@
 import pytest
 import allure
 from tools.allure.tags import AllureTag
+from tools.allure.epics import AllureEpic
+from tools.allure.features import AllureFeture
+from tools.allure.stories import AllureStory
+from allure_commons.types import Severity
 from playwright.sync_api import Page
 from fixtures.pages import CreateCoursePage, CoursesListPage
 from pages.courses.courses_list_page import CoursesListPage
 
 
 @allure.tag(AllureTag.REGRESSION, AllureTag.COURSES)
+@allure.epic(AllureEpic.LMS)
+@allure.feature(AllureFeture.COURSES)
+@allure.story(AllureStory.COURSES)
+@allure.parent_suite(AllureEpic.LMS)
+@allure.suite(AllureFeture.COURSES)
+@allure.sub_suite(AllureStory.COURSES)
 @pytest.mark.courses
 @pytest.mark.regression
 class TestCourses:
     @allure.title("Create course")
+    @allure.severity(Severity.CRITICAL)
     def test_create_course(
         self, create_course_page: CreateCoursePage, courses_list_page: CoursesListPage
     ):
@@ -46,6 +57,7 @@ class TestCourses:
         )
     
     @allure.title("Check displaying of empty courses list")
+    @allure.severity(Severity.NORMAL)
     def test_empty_courses_list(self, courses_list_page: CoursesListPage):
         courses_list_page.visit(
             "https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses"
@@ -57,6 +69,7 @@ class TestCourses:
         courses_list_page.check_visible_empty_view()
 
     @allure.title("Edit course")
+    @allure.severity(Severity.CRITICAL)
     def test_edit_course(self, create_course_page: CreateCoursePage, courses_list_page: CoursesListPage):
         create_course_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create")
         create_course_page.create_course_form.fill(title="Anime", estimated_time="77", description='Anime page create', max_score="10", min_score="1")
