@@ -2,9 +2,13 @@
 venv/
 ENV/
 env/
+.env
 .env/
 .venv/
+tracing/
+videos/
 .DS_Store
+browser-state.json
 # Python cache
 __pycache__/
 *.py[cod]
