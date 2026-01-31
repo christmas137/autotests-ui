@@ -14,7 +14,6 @@ class DashboardPage(BasePage):
 
         self.sidebar = SidebarComponent(page)
         self.navbar = NavbarComponent(page)
-        self.sidebar = SidebarComponent(page)
         self.dashboard_toolbar_view = DashboardToolbarViewComponent(page)
 
         self.students_chart_view = ChartViewComponent(
