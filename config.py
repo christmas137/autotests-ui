@@ -43,17 +43,11 @@ class Settings(BaseSettings):
 
     @classmethod
     def initialize(cls) -> Self:
-        videos_dir = DirectoryPath("./videos")
-        tracing_dir = DirectoryPath("./tracing")
-        browser_state_file = FilePath("browser-state.json")
+        from pathlib import Path
 
-        videos_dir.mkdir(exist_ok=True)
-        tracing_dir.mkdir(exist_ok=True)
-        browser_state_file.touch(exist_ok=True)
+        Path("./videos").mkdir(exist_ok=True)
+        Path("./tracing").mkdir(exist_ok=True)
+        Path("browser-state.json").touch(exist_ok=True)
 
-        return Settings(
-            videos_dir=videos_dir,
-            tracing_dir=tracing_dir,
-            browser_state_file=browser_state_file
-        )
+        return Settings()
 settings = Settings.initialize()

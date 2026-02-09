@@ -8,6 +8,7 @@ from allure_commons.types import Severity
 from pages.authentication.registration_page import RegistrationPage
 from pages.dashboard.dashboard_page import DashboardPage
 
+@pytest.mark.xdist_group(name="authorization-group")
 @allure.tag(AllureTag.REGRESSION, AllureTag.REGISTRATION)
 @allure.epic(AllureEpic.LMS)
 @allure.feature(AllureFeture.AUTHENTICATION)

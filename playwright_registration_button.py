@@ -1,7 +1,7 @@
 from playwright.sync_api import sync_playwright, expect
 
 with sync_playwright() as playwright:
-    browser = playwright.webkit.launch(headless=False)
+    browser = playwright.webkit.launch(headless=True)
     context = browser.new_context()
     page = context.new_page()
 

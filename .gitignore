@@ -18,3 +18,18 @@ __pycache__/
 .pytest_cache/
 .cache/
 
+.idea
+
+# python
+.venv
+__pycache__
+
+# allure
+allure-results
+allure-report
+
+# testing artifacts
+*.html
+*.json
+videos
+tracing
