@@ -1,4 +1,5 @@
 from enum import Enum
+from pathlib import Path
 from typing import Self
 
 from pydantic import EmailStr, FilePath, HttpUrl, DirectoryPath, BaseModel
@@ -23,7 +24,7 @@ class TestData(BaseModel):
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=Path(__file__).parent / ".env",
         env_file_encoding="utf-8",
         env_nested_delimiter=".",
     )
@@ -43,8 +44,6 @@ class Settings(BaseSettings):
 
     @classmethod
     def initialize(cls) -> Self:
-        from pathlib import Path
-
         Path("./videos").mkdir(exist_ok=True)
         Path("./tracing").mkdir(exist_ok=True)
         Path("browser-state.json").touch(exist_ok=True)
