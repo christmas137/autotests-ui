@@ -1,8 +1,8 @@
+# config.py
 from enum import Enum
-from pathlib import Path
 from typing import Self
 
-from pydantic import EmailStr, FilePath, HttpUrl, DirectoryPath, BaseModel
+from pydantic import EmailStr, FilePath, HttpUrl, DirectoryPath
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -12,19 +12,23 @@ class Browser(str, Enum):
     CHROMIUM = "chromium"
 
 
-class TestUser(BaseModel):
+class TestUser(BaseSettings):
+    model_config = SettingsConfigDict(env_prefix="TEST_USER")
+
     email: EmailStr
     username: str
     password: str
 
 
-class TestData(BaseModel):
+class TestData(BaseSettings):
+    model_config = SettingsConfigDict(env_prefix="TEST_DATA")
+
     image_png_file: FilePath
 
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file=Path(__file__).parent / ".env",
+        env_file=".env",
         env_file_encoding="utf-8",
         env_nested_delimiter=".",
     )
@@ -36,17 +40,30 @@ class Settings(BaseSettings):
     test_data: TestData
     videos_dir: DirectoryPath
     tracing_dir: DirectoryPath
+    allure_results_dir: DirectoryPath
     browser_state_file: FilePath
 
-    def get_base_url(self):
+    def get_base_url(self) -> str:
         return f"{self.app_url}/"
-
 
     @classmethod
     def initialize(cls) -> Self:
-        Path("./videos").mkdir(exist_ok=True)
-        Path("./tracing").mkdir(exist_ok=True)
-        Path("browser-state.json").touch(exist_ok=True)
+        videos_dir = DirectoryPath("./videos")
+        tracing_dir = DirectoryPath("./tracing")
+        allure_results_dir = DirectoryPath("./allure-results") 
+        browser_state_file = FilePath("browser-state.json")
 
-        return Settings()
+        videos_dir.mkdir(exist_ok=True)
+        tracing_dir.mkdir(exist_ok=True)
+        allure_results_dir.mkdir(exist_ok=True) 
+        browser_state_file.touch(exist_ok=True)
+
+        return Settings(
+            videos_dir=videos_dir,
+            tracing_dir=tracing_dir,
+            allure_results_dir=allure_results_dir,  
+            browser_state_file=browser_state_file
+        )
+
+
 settings = Settings.initialize()
